@@ -1,0 +1,85 @@
+package com.example.k.customattributedemo;
+
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.os.Build;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
+import android.text.InputType;
+import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+
+/**
+ * 1.input_icon   输入框前面的图标
+ * 2.input_hint   输入框的提示内容
+ * 3.is_password  输入框的内容是否以密文的形式显示
+ */
+public class InputView extends FrameLayout {
+    private int inputIcon;
+    private String inputHint;
+    private boolean isPassword;
+
+    private View mView;
+    private ImageView mIvIcon;
+    private EditText mEdinput;
+
+    public InputView(@NonNull Context context) {
+        super(context);
+        init(context, null);
+    }
+
+    public InputView(@NonNull Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+        init(context, attrs);
+    }
+
+    public InputView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init(context, attrs);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public InputView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        init(context, attrs);
+    }
+
+    /**
+     * 初始化方法
+     *
+     * @param context
+     * @param attrs
+     */
+    private void init(Context context, AttributeSet attrs) {
+        if (attrs == null) return;
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.inputView);
+        inputIcon = typedArray.getResourceId(R.styleable.inputView_input_icon, R.mipmap.ic_launcher);
+        inputHint = typedArray.getString(R.styleable.inputView_input_hint);
+        isPassword = typedArray.getBoolean(R.styleable.inputView_input_password, false);
+        //typeArray 使用完后必须手动释放
+        typedArray.recycle();
+        //绑定layout布局
+        mView = LayoutInflater.from(context).inflate(R.layout.input_view, this, false);
+        mIvIcon = mView.findViewById(R.id.iv_icon);
+        mEdinput = mView.findViewById(R.id.et_input);
+        //布局关联属性
+        mIvIcon.setImageResource(inputIcon);
+        mEdinput.setHint(inputHint);
+        mEdinput.setInputType(isPassword ? InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD : InputType.TYPE_CLASS_PHONE);
+
+        addView(mView);
+    }
+
+    /**
+     * 获取输入的内容
+     * @return
+     */
+    public String getInputStr() {
+        return mEdinput.getText().toString().trim();
+    }
+}
