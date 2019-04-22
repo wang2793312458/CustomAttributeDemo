@@ -1,19 +1,11 @@
 package com.example.k.customattributedemo;
 
 public class HttpResponseData<T> {
-    private int state;
-    private String msg;
+    public String status;
+    public String message;
     private T data;
 
     public HttpResponseData() {
-    }
-
-    public String getMsg() {
-        return this.msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
     }
 
     public T getData() {
@@ -24,16 +16,8 @@ public class HttpResponseData<T> {
         this.data = data;
     }
 
-    public int getState() {
-        return this.state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
-    }
-
 
     public String toString() {
-        return "\n   [code: " + this.state + "\n     msg: " + this.msg + "\n    data: " + this.data + "\n";
+        return "\n   [code: " + this.status + "\n     msg: " + this.message + "\n    data: " + this.data + "\n";
     }
 }

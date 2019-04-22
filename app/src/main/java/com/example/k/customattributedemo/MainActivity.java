@@ -27,13 +27,12 @@ public class MainActivity extends AppCompatActivity {
                         .subscribe(new HttpObserver<>(new HttpSuccessListener<LoginData>() {
                             @Override
                             public void success(LoginData var1) {
-//                                LoginData data=new Gson().fromJson(var1,LoginData.class);
-                                Log.d(TAG, "success: "+var1);
+                                Log.d(TAG, "success: "+var1.message);
                             }
                         }, new HttpErrorListener() {
                             @Override
                             public void error(Throwable var1) {
-                                Log.d(TAG, "error: "+var1);
+                                Log.d(TAG, "error: "+var1.getMessage());
                             }
                         }));
             }

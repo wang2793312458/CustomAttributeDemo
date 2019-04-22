@@ -54,11 +54,9 @@ public class HttpResultConverter extends Factory {
                 String strResponse = response.string();
                 Log.d(TAG, "convert: "+strResponse);
                 if (TextUtils.isEmpty(strResponse)) {
-                    Log.d(TAG, "convert: 1111");
                     throw new HttpException("请求服务器异常");
-                }else {
-                    Log.d(TAG, "convert: 222");
-                  var6=strResponse;
+                } else {
+                    var6 = mGson.fromJson(strResponse, this.mType);
                 }
 //                HttpResponseData httpResponse = mGson.fromJson(strResponse, HttpResponseData.class);
 //                int state = httpResponse.getState();
