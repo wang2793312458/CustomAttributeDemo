@@ -8,6 +8,7 @@ import android.view.View;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,6 +38,42 @@ public class MainActivity extends AppCompatActivity {
                         }));
             }
         });
+String path="";
+//        HttpFactory.getInstance().upload(UploadUtils.getMultipartBody(path))
+//                .compose(HttpObserver.<List<String>>schedulers())
+//                .subscribe(new UploadSubscriber<List<String>>() {
+//                    @Override
+//                    public void onNext(List<String> list) {
+//                        listener.success(list);
+//                    }
+//                });
+
+
 
     }
+//    private void addEvaluate() {
+//        if (mList.size() < 1) {
+//            addCommentEmoji("");
+//        } else {
+//            for (ImageItem imageItem : mList) {
+//                list.add(imageItem.path);
+//            }
+//            HttpFactory.creatHttp(API.class, APIConstants.API_UPLOAD_IMAGE).uploads(UploadUtils.getMultipartBodysForPath(list))
+//                    .compose(HttpSubscriber.<List<String>>applySchedulers())
+//                    .subscribe(new UploadSubscriber<List<String>>(this) {
+//                        @Override
+//                        public void onNext(List<String> list) {
+//                            StringBuffer buf = new StringBuffer();
+//                            for (int i = 0; i < list.size(); i++) {
+//                                buf.append(list.get(i) + ",");
+//                            }
+//                            if (buf.length() > 0) {
+//                                buf.deleteCharAt(buf.length() - 1);
+//                                mOrderpath = buf.toString();
+//                            }
+//                            addCommentEmoji(mOrderpath);
+//                        }
+//                    });
+//        }
+//    }
 }
